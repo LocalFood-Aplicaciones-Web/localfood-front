@@ -6,8 +6,11 @@ import { createRouter, createWebHistory } from "vue-router";
  * - Home (pantalla principal)
  * - PageNotFound (fallback para rutas inválidas)
  */
-import Home from "@/shared/presentation/views/home.vue";
-const PageNotFound = () => import("@/shared/presentation/views/page-not-found.vue");
+import Home from "@/shared/views/home.vue";
+const PageNotFound = () => import("@/shared/views/page-not-found.vue");
+
+// Importar rutas del módulo de cálculo
+import calculoRoutes from "@/modules/calculo/presentation/calculo.routes.js";
 
 const routes = [
     {
@@ -15,6 +18,13 @@ const routes = [
         name: "home",
         component: Home,
         meta: { title: "Inicio" }
+    },
+
+    // Rutas del módulo de cálculo
+    {
+        path: "/calculo",
+        children: calculoRoutes,
+        meta: { title: "Cálculo de Restaurantes" }
     },
 
     {
@@ -27,6 +37,7 @@ const routes = [
         component: PageNotFound,
         meta: { title: "Página no encontrada" }
     }
+
 ];
 
 // Crear instancia del router
@@ -34,6 +45,7 @@ const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes
 });
+
 
 // Cambiar el título dinámico y dejar logs de navegación
 router.beforeEach((to, from, next) => {

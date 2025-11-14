@@ -20,13 +20,6 @@ const routes = [
         meta: { title: "Inicio" }
     },
 
-    // Rutas del módulo de cálculo
-    {
-        path: "/calculo",
-        children: calculoRoutes,
-        meta: { title: "Cálculo de Restaurantes" }
-    },
-
     {
         path: "/",
         redirect: "/home"

@@ -1,11 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-/**
- * Importación de vistas globales esenciales
- * Estas vistas SIEMPRE deben existir en cualquier proyecto:
- * - Home (pantalla principal)
- * - PageNotFound (fallback para rutas inválidas)
- */
+
 import Home from "@/shared/views/home.vue";
 const PageNotFound = () => import("@/shared/views/page-not-found.vue");
 
@@ -18,6 +13,13 @@ const routes = [
         name: "home",
         component: Home,
         meta: { title: "Inicio" }
+    },
+
+    // Rutas del módulo de cálculo
+    {
+        path: "/calculo",
+        children: calculoRoutes,
+        meta: { title: "Cálculo de Restaurantes" }
     },
 
     {
